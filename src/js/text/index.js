@@ -248,7 +248,9 @@ Text.prototype = {
             // 获取粘贴的文字
             let pasteHtml = getPasteHtml(e)
             let pasteText = getPasteText(e)
-            pasteText = pasteText.replace(/\n/gm, '<br>')
+            pasteText = pasteText
+                            .replace(/([^\n])\n/gm, '$1</p><p>')
+                            .replace(/\n/gm, '<br></p><p>')
 
             const $selectionElem = editor.selection.getSelectionContainerElem()
             if (!$selectionElem) {
